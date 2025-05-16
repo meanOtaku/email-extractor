@@ -45,7 +45,7 @@ export default function EmailExtractor() {
             const bodyData = {
                 emailList: emails,
             };
-            const result = await fetch("http://email-backend-taupe.vercel.app/email", {
+            const result = await fetch("https://email-backend-taupe.vercel.app/email", {
                 method: "POST",
                 headers: {
                     'Accept': 'application/json',
