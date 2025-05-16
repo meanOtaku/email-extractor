@@ -36,7 +36,6 @@ export default function EmailExtractor() {
     async function scanValidEmails() {
         setDisableButton(true);
         setLoadingStatus(true);
-        console.log(emails);
         if (emails.length === 0) {
             alert("Please extract emails first.");
             setLoadingStatus(false);
@@ -54,12 +53,11 @@ export default function EmailExtractor() {
                 },
                 body: JSON.stringify(bodyData),
             });
-            console.log(result);
             const data = await result.json();
-            console.log(data);
+            setValidEmails([]);
             data.forEach((email: emailType) => {
                 if(email.value.validFormat && email.value.validMx && email.value.validSmtp) {
-                    setValidEmails([email.email]);
+                    setValidEmails((prev) => [...prev, email.email]);
                 }
             });
             setLoadingStatus(false);
